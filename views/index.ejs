@@ -14,27 +14,33 @@
             <input type="url" name="fullUrl" id="fullUrl" placeholder="Url" required class="form-control mr-2 col">
             <button class="btn btn-success" type="submit">Shrink</button>
         </form>
-        <table class="table table-striped table-responsive table-hover w-auto">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Original Url</th>
-                    <th>Short Url</th>
-                    <th>Clicks</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% shortUrls.forEach(shortUrl => {%>
+        <div class="table-mid">
+            <table class="table table-striped table-responsive table-hover w-auto">
+                <thead class="thead-dark">
                     <tr>
-                        <td class="longUrl"><a href="<%= shortUrl.full %>" ><%= shortUrl.full %></a></td>
-                        <td><a href="<%= shortUrl.short %>"><%= shortUrl.short %></a></td>
-                        <td><%= shortUrl.clicks %></td>
+                        <th>Original Url</th>
+                        <th>Short Url</th>
+                        <th>Clicks</th>
                     </tr>
-                <% }) %>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <% shortUrls.forEach(shortUrl => {%>
+                        <tr>
+                            <td class="longUrl"><a href="<%= shortUrl.full %>" ><%= shortUrl.full %></a></td>
+                            <td><a href="<%= shortUrl.short %>"><%= shortUrl.short %></a></td>
+                            <td><%= shortUrl.clicks %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+        <footer class="footer">
+            <div class="container">
+              <span class="text-muted">Note: Refresh page to get number of clicks after clicking short Url</span>
+            </div>
+        </footer>
     </div>
     <style>
-
         .header{
             margin:20px;
             text-align: center;
@@ -43,9 +49,36 @@
         table, th, td{
             text-align: center;
         }
+        /* table{
+            margin: auto !important;
+            margin-left: 100px;
+        } */
 
         .longUrl{
             word-break: break-word;
+        }
+        .table-mid{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #fullUrl{
+            width:50%;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 82%;
+            height: 60px;
+            line-height: 60px;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        @media screen and (max-width: 500px) {
+           .footer {
+                position: relative;
+            }
         }
     </style>
 </body>

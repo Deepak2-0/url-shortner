@@ -11,7 +11,7 @@
         <h1 class="header my-4">Url Shrinker</h1>
         <form action="/shorturl" method="POST" class="my-4 form-inline">
             <label for="fullUrl" class="sr-only">Url</label>
-            <input type="url" name="fullUrl" id="fullUrl" placeholder="Url" required class="form-control mr-2 col">
+            <input type="url" name="fullUrl" id="fullUrl" placeholder="Enter Url" required class="form-control mr-2 col">
             <button class="btn btn-success" type="submit">Shrink</button>
         </form>
         <div class="table-mid">
@@ -21,6 +21,7 @@
                         <th>Original Url</th>
                         <th>Short Url</th>
                         <th>Clicks</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,6 +30,13 @@
                             <td class="longUrl"><a href="<%= shortUrl.full %>" ><%= shortUrl.full %></a></td>
                             <td><a href="<%= shortUrl.short %>"><%= shortUrl.short %></a></td>
                             <td><%= shortUrl.clicks %></td>
+                            <td>
+                                <form action="/delete" method="POST">
+                                    <button class="btn btn-danger delete" type="submit" name="url" value="<%= shortUrl.short %>">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     <% }) %>
                 </tbody>
@@ -45,14 +53,10 @@
             margin:20px;
             text-align: center;
         }
-        
+
         table, th, td{
             text-align: center;
         }
-        /* table{
-            margin: auto !important;
-            margin-left: 100px;
-        } */
 
         .longUrl{
             word-break: break-word;
@@ -67,7 +71,7 @@
             background-color: #f5f5f5;
             text-align: center;
             padding: 20px 0;
-            margin: 25px;
+            margin: 25px 0;
         }
     </style>
 </body>

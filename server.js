@@ -30,7 +30,7 @@ app.get("/:shortUrl" , async (req,res)=>{
     }
 
     shortUrl.clicks++;
-    await shortUrl.save();
+    shortUrl.save();
 
     res.redirect(shortUrl.full);
 })

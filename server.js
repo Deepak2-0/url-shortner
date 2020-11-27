@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const shortUrl = require("./models/shortUrl");
 const ShortUrl = require("./models/shortUrl");
 const app = express();
 
@@ -25,7 +24,7 @@ app.post("/shorturl", async (req,res)=>{
 app.post("/delete", async(req,res)=>{
 
     let urlToDelete = req.body.url;
-    await shortUrl.deleteOne( { "short" : urlToDelete } );
+    await ShortUrl.deleteOne( { "short" : urlToDelete } );
     res.redirect("/");
 })
 
